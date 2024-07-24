@@ -1,0 +1,26 @@
+Prequisite Task
+
+This script has been tested on Ubuntu 22.04.
+
+More information can be found at:
+
+https://duo.com/docs/duounix
+
+The same user account needs to be setup in the DUO Admin Console and enabled for push notifaction. 
+
+1. Create the following dircetory structure.
+
+2. mkdir /home/your_username/uscript/
+
+3. mkdir /home/your_username/uscript/duo/
+
+4. scp all of the contents from the /uscript/duo diretory to /home/your_username/script/duo/ 
+
+5. chmod u+x /home/your_username/uscript/duo/duo.sh 
+
+6. sh /home/your_username/uscript/duo/duo.sh 
+
+7. Log off of your system and attempt to logback in to your system.
+
+7. If you attempt to sudo witin a terminal or login via Gnome, you will be prompted for either a push notifaction 
+or sms message to login to your to your system.
