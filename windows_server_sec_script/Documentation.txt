@@ -1,0 +1,14 @@
+The following script automates the process of securing your Windows client system based on CIS benchmarks.
+This script has been tested on Windows Server 2012, Windows Server 2016, and Windows Server 2019.
+
+1. Copy the contents for this script to either an external drive, local drive or virtual drive on your Windows system.
+
+2. Rename the letter Drive to r:\  or some letter that you prefer. Note that a find and replace of the drive letter will 
+have to be used to modify this script in order for it to work correctly. For demonstrated purposes in this case, I'm using the r:\drive.
+
+3. Open up a Powershell command prompt and execute cd r:\windows_server_sec_script
+
+4. Execute the following command: .\winserversecv2.ps1.
+
+5. You have now secured your Windows server system.  Please execute this script only within a non-production environment and always 
+ask permission before executing the script in any client environment.
