@@ -1,0 +1,287 @@
++ SLEEP20s=
++ SLEEP45s=
++ SLEEP90s=
++ SLEEP240s=
++ '=apt install -y'
+/home/pootrt/uscript/ubuntu_security-ssh-config.sh: line 14: =apt install -y: command not found
++ '=apt remove -y'
+/home/pootrt/uscript/ubuntu_security-ssh-config.sh: line 15: =apt remove -y: command not found
++ '=apt update -y'
+/home/pootrt/uscript/ubuntu_security-ssh-config.sh: line 16: =apt update -y: command not found
++ echo '****Ensure SSH LogLevel is appropriate****'
++ echo '****Run the following command and verify that output matches loglevel VERBOSE or loglevel INFO****'
+****Ensure SSH LogLevel is appropriate****
++ grep -i LogLevel /etc/ssh/sshd_config
+****Run the following command and verify that output matches loglevel VERBOSE or loglevel INFO****
+LogLevel VERBOSE
++ echo 'Write the following file to /etc/ssh/sshd_config'
++ sed -i 's/#LogLevel INFO/LogLevel VERBOSE/g' /etc/ssh/sshd_config
+Write the following file to /etc/ssh/sshd_config
++ echo '****Ensure SSH PAM is enabled****'
++ echo '****Run the following command and verify that output matches****'
++ grep -i UsePAM /etc/ssh/sshd_config
+****Ensure SSH PAM is enabled****
+****Run the following command and verify that output matches****
+UsePAM yes
++ echo 'Write the following file to /etc/ssh/sshd_config'
++ sed -i 's/#UsePAM no/UsePAM yes/g' /etc/ssh/sshd_config
+Write the following file to /etc/ssh/sshd_config
++ echo '****Ensure SSH HostbasedAuthentication is disabled****'
++ echo '****Run the following command and verify that output matches****'
++ grep -i HostbasedAuthentication /etc/ssh/sshd_config
+****Ensure SSH HostbasedAuthentication is disabled****
+****Run the following command and verify that output matches****
+#HostbasedAuthentication no
+# HostbasedAuthentication
++ echo '****Run the following command to remediate the security finding****'
++ sed -i 's/#HostbasedAuthentication yes/HostbasedAuthentication no/g' /etc/ssh/sshd_config
+****Run the following command to remediate the security finding****
++ echo '****Ensure SSH PermitEmptyPasswords is disabled****'
++ echo 'Run the following command and verify that output matches'
++ grep -i PermitEmptyPasswords /etc/ssh/sshd_config
+****Ensure SSH PermitEmptyPasswords is disabled****
+Run the following command and verify that output matches
+PermitEmptyPasswords no
++ echo '****Run the following command to remediate the security finding****'
++ sed -i 's/#PermitEmptyPasswords yes/PermitEmptyPasswords no/g' /etc/ssh/sshd_config
+****Run the following command to remediate the security finding****
++ echo '****Ensure SSH PermitUserEnvironment is disabled****'
++ echo 'Run the following command and verify that output matches'
+****Ensure SSH PermitUserEnvironment is disabled****
++ grep -i PermitUserEnvironment /etc/ssh/sshd_config
+Run the following command and verify that output matches
+PermitUserEnvironment no
++ echo '****Run the following command to remediate the security finding****'
+****Run the following command to remediate the security finding****
++ sed -i 's/#PermitUserEnvironment yes/PermitUserEnvironment no/g' /etc/ssh/sshd_config
++ echo '****Ensure SSH IgnoreRhosts is enabled****'
+****Ensure SSH IgnoreRhosts is enabled****
++ echo '****Run the following command and verify that output matches****'
+****Run the following command and verify that output matches****
++ grep -i IgnoreRhosts /etc/ssh/sshd_config
+IgnoreRhosts yes
++ echo '****Run the following command to remediate the security finding****'
++ sed -i 's/#IgnoreRhosts no/IgnoreRhosts yes/g' /etc/ssh/sshd_config
+****Run the following command to remediate the security finding****
++ echo '****Ensure SSH X11 forwarding is disabled****'
++ echo '****Run the following command and verify that the output matches****'
+****Ensure SSH X11 forwarding is disabled****
++ grep -i X11Forwarding /etc/ssh/sshd_config
+****Run the following command and verify that the output matches****
+X11Forwarding no
+#       X11Forwarding no
++ echo '****Run the following command to remediate the security finding****'
++ sed -i 's/#X11Forwarding yes/X11Forwarding no/g' /etc/ssh/sshd_config
+****Run the following command to remediate the security finding****
++ echo '****Ensure SSH AllowTcpForwarding is disabled****'
+****Ensure SSH AllowTcpForwarding is disabled****
++ echo '****Run the following command and verify the output****'
+****Run the following command and verify the output****
++ grep -i AllowTcpForwarding /etc/ssh/sshd_config
+#AllowTcpForwarding no
+#       AllowTcpForwarding no
++ echo '****Run the following command to remediate the security finding****'
+****Run the following command to remediate the security finding****
++ sed -i 's/#AllowTcpForwarding yes/AllowTcpForwarding no/g' /etc/ssh/sshd_config
++ echo '****Ensure only strong Ciphers are used****'
+****Ensure only strong Ciphers are used****
++ echo '****Run the following commands and verify the output****'
+****Run the following commands and verify the output****
++ grep -i 3des-cbc,aes128-cbc,aes192-cbc,aes256-cbc /etc/ssh/sshd_config
++ grep -i 'Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr' /etc/ssh/sshd_config
+Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr,chacha20-poly1305@openssh.com
++ echo '****Run the following command to remediate the security finding****'
+****Run the following command to remediate the security finding****
++ sed -i '/Ciphers/a Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr' /etc/ssh/sshd_config
++ echo '****Ensure only strong MAC algorithms are used****'
+****Ensure only strong MAC algorithms are used****
++ echo '****Run the following commands and verify the output****'
+****Run the following commands and verify the output****
++ grep -i 'hmac-md5,hmac-md5-96,hmac-ripemd160,hmac-sha1,hmac-sha1-96,umac-64@openssh.com,umac-128@openssh.com,hmac-md5-etm@openssh.com,hmac-md5-96-etm@openssh.com,hmac-ripemd160-etm@openssh.com,hmac-sha1-etm@openssh.com,hmac-sha1-96-etm@openssh.com,umac-64 etm@openssh.com,umac-128-etm@openssh.com' /etc/ssh/sshd_config
++ echo '****Run the following command to remediate the security finding****'
+****Run the following command to remediate the security finding****
++ sed -i '$aMACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512,hmac-sha2-256' /etc/ssh/sshd_config
++ echo '****Ensure only strong Key Exchange algorithms are used****'
+****Ensure only strong Key Exchange algorithms are used****
++ echo '****Run the following commands and verify the output****'
+****Run the following commands and verify the output****
++ grep -i diffie-hellman-group1-sha1,diffie-hellman-group14-sha1,diffie-hellman-group-exchange-sha1 /etc/ssh/sshd_config
++ echo '****Run the following command to remediate the security finding****'
+****Run the following command to remediate the security finding****
++ sed -i '$aKexAlgorithms curve25519-sha256,curve25519-sha256@libssh.org,diffie-hellman-group14-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,ecdh-sha2-nistp521,ecdh-sha2-nistp384,ecdh-sha2-nistp256,diffie-hellman-group-exchange-sha256' /etc/ssh/sshd_config
++ echo '****Ensure SSH MaxAuthTries is set to 4 or less****'
+****Ensure SSH MaxAuthTries is set to 4 or less****
++ echo '****Run the following command and verify that output MaxAuthTries is 4 or less****'
+****Run the following command and verify that output MaxAuthTries is 4 or less****
++ grep -i maxauthtries /etc/ssh/sshd_config
+MaxAuthTries 6
++ echo '****Run the following command to remediate the security finding****'
+****Run the following command to remediate the security finding****
++ sed -i 's/^#*\s*MaxAuthTries\s\+.*/MaxAuthTries 4/' /etc/ssh/sshd_config
++ echo '****Ensure SSH MaxStartups is configured****'
+****Ensure SSH MaxStartups is configured****
++ echo '****Run the following command and verify that output MaxStartups is 10:30:60 or more restrictive****'
+****Run the following command and verify that output MaxStartups is 10:30:60 or more restrictive****
++ grep -i MaxStartups /etc/ssh/sshd_config
+MaxStartups 10:30:100
++ echo '****In the setting MaxStartups 10:30:60, the values are as follows****'
+****In the setting MaxStartups 10:30:60, the values are as follows****
++ echo '****<start> is 10, meaning that the first 10 unauthenticated connection attempts will be allowed without any rate-limiting****'
+****<start> is 10, meaning that the first 10 unauthenticated connection attempts will be allowed without any rate-limiting****
++ echo '****<<rate> is 30, meaning that after the initial 10 connections, the server will allow up to 30 new unauthenticated connections per second****'
+****<<rate> is 30, meaning that after the initial 10 connections, the server will allow up to 30 new unauthenticated connections per second****
++ echo '****<<max> is 60, meaning that the maximum number of concurrent unauthenticated connections allowed at any given time is 60****'
+****<<max> is 60, meaning that the maximum number of concurrent unauthenticated connections allowed at any given time is 60****
++ echo '****Run the following command to remediate the security finding****'
+****Run the following command to remediate the security finding****
++ sed -i 's/^#*\s*MaxStartups\s\+.*/MaxStartups 5:5:5/' /etc/ssh/sshd_config
++ echo '****Ensure SSH MaxSessions is set to 10 or less****'
+****Ensure SSH MaxSessions is set to 10 or less****
++ echo '****Run the following command and verify that output MaxSessions is 10 or less****'
+****Run the following command and verify that output MaxSessions is 10 or less****
++ grep -i MaxSessions /etc/ssh/sshd_config
+MaxSessions 10
++ echo '****Run the following command to remediate the security finding****'
+****Run the following command to remediate the security finding****
++ sed -i 's/^#*\s*MaxSessions\s\+.*/MaxSessions 4/' /etc/ssh/sshd_config
++ echo '****Ensure SSH LoginGraceTime is set to one minute or less ****'
+****Ensure SSH LoginGraceTime is set to one minute or less ****
++ echo '****Run the following command and verify that output LoginGraceTime is between 1 and 60 seconds or 1m****'
+****Run the following command and verify that output LoginGraceTime is between 1 and 60 seconds or 1m****
++ grep -i logingracetime /etc/ssh/sshd_config
+LoginGraceTime 2m
++ echo '****Run the following command to remediate the security finding****'
+****Run the following command to remediate the security finding****
++ sed -i 's/^#*\s*LoginGraceTime\s\+.*/LoginGraceTime 1m/' /etc/ssh/sshd_config
++ echo '****Ensure sudo is installed****'
+****Ensure sudo is installed****
++ echo '****Run the following command to verify that either sudo or sudo-ldap is installed****'
+****Run the following command to verify that either sudo or sudo-ldap is installed****
++ dpkg-query -l sudo
+Desired=Unknown/Install/Remove/Purge/Hold
+| Status=Not/Inst/Conf-files/Unpacked/halF-conf/Half-inst/trig-aWait/Trig-pend
+|/ Err?=(none)/Reinst-required (Status,Err: uppercase=bad)
+||/ Name           Version          Architecture Description
++++-==============-================-============-=======================================================
+ii  sudo           1.9.9-1ubuntu2.4 amd64        Provide limited super user privileges to specific users
++ echo '****Run the following command to remediate the security finding****'
+****Run the following command to remediate the security finding****
++ apt install sudo
+
+WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+
+Reading package lists...
+Building dependency tree...
+Reading state information...
+sudo is already the newest version (1.9.9-1ubuntu2.4).
+sudo set to manually installed.
+The following packages were automatically installed and are no longer required:
+  apport-symptoms cups-browsed cups-core-drivers cups-daemon
+  cups-server-common gdb hplip-data libavahi-core7 libbabeltrace1
+  libboost-regex1.74.0 libc6-dbg libcupsimage2 libdebuginfod-common
+  libdebuginfod1 libhpmud0 libimagequant0 libipt2 libraqm0 libsane-hpaio
+  libsource-highlight-common libsource-highlight4v5
+  printer-driver-postscript-hp python3-olefile python3-pil python3-renderpm
+  python3-reportlab python3-reportlab-accel ssl-cert
+Use 'apt autoremove' to remove them.
+0 upgraded, 0 newly installed, 0 to remove and 12 not upgraded.
++ echo '****Ensure sudo commands use pty****'
++ echo '****Verify that sudo can only run other commands from a pseudo terminal****'
+****Ensure sudo commands use pty****
+****Verify that sudo can only run other commands from a pseudo terminal****
++ grep -rPi '^\h*Defaults\h+([^#\n\r]+,)?use_pty(,\h*\h+\h*)*\h*(#.*)?$' /etc/sudoers /etc/sudoers.d
+/etc/sudoers:Defaults	use_pty
++ echo '****Run the following command to remediate the security finding****'
++ sed -i '/Defaults    use_pty/c\Defaults use_pty' /etc/sudoers
+****Run the following command to remediate the security finding****
++ echo '****Ensure sudo log file exists****'
++ echo '****Run the following command to verify that sudo has a custom log file configured****'
++ grep -i /var/log/sudo.log /etc/sudoers
+****Ensure sudo log file exists****
+****Run the following command to verify that sudo has a custom log file configured****
++ echo '****Run the following command to remediate the security finding****'
++ sed -i '$ a\Defaults    logfile="/var/log/sudo.log"' /etc/sudoers
+****Run the following command to remediate the security finding****
++ echo '****Ensure users must provide password for privilege escalation****'
++ echo '****Check the configuration of the /etc/sudoers file with the following command****'
++ grep -i NOPASSWD /etc/sudoers
+****Ensure users must provide password for privilege escalation****
+****Check the configuration of the /etc/sudoers file with the following command****
++ echo '****Run the following command to remediate the security finding****'
++ sed -i /NOPASSWD/d /etc/sudoers
+****Run the following command to remediate the security finding****
++ echo '****Ensure re-authentication for privilege escalation is not disabled globally****'
++ echo '****Verify the operating system requires users to re-authenticate for privilege escalation****'
++ grep -i authenticate /etc/sudoers
+****Ensure re-authentication for privilege escalation is not disabled globally****
+****Verify the operating system requires users to re-authenticate for privilege escalation****
++ echo '****Run the following command to remediate the security finding****'
++ sed -i /authenticate/d /etc/sudoers
+****Run the following command to remediate the security finding****
++ echo '****Ensure sudo authentication timeout is configured correctly****'
++ echo '****Ensure that the caching timeout is no more than 15 minutes****'
++ grep -i 'Authentication timestamp timeout' /etc/sudoers
+****Ensure sudo authentication timeout is configured correctly****
+****Ensure that the caching timeout is no more than 15 minutes****
++ echo '****Run the following command to remediate the security finding****'
++ sed -i '$ a\Defaults    env_reset, timestamp_timeout=15' /etc/sudoers
+****Run the following command to remediate the security finding****
++ sed -i '$ a\Defaults    timestamp_timeout=15' /etc/sudoers
++ sed -i '$ a\Defaults    env_reset' /etc/sudoers
++ echo '****Ensure access to the su command is restricted****'
++ echo '****Ensure that the su command cannot be executed by just any user****'
++ grep -i 'auth       required   pam_wheel.so' /etc/pam.d/su
+****Ensure access to the su command is restricted****
+****Ensure that the su command cannot be executed by just any user****
+# auth       required   pam_wheel.so
+# auth       required   pam_wheel.so deny group=nosu
++ echo '****Run the following command to comment out pam_wheel.so and that su cannot be executed by just any user****'
++ sed -i '/^[[:blank:]]*auth[[:blank:]]\+required[[:blank:]]\+pam_wheel.so/s/^/# /' /etc/pam.d/su
+****Run the following command to comment out pam_wheel.so and that su cannot be executed by just any user****
++ echo '****Create an empty group that will be specified for use of the su command****'
++ groupadd sugroup
+****Create an empty group that will be specified for use of the su command****
++ echo '****Add the following value to the /etc/pam.d/su file, specifying the empty group****'
++ sed -i '$ a\auth required pam_wheel.so use_uid group=sugroup' /etc/pam.d/su
+****Add the following value to the /etc/pam.d/su file, specifying the empty group****
++ echo '****Ensure password creation requirements are configured****'
++ echo '****Run the following commands and verify password length requirements conform to organization policy****'
++ grep -i minlen /etc/security/pwquality.conf
+****Ensure password creation requirements are configured****
+****Run the following commands and verify password length requirements conform to organization policy****
+# minlen = 8
++ echo '****Run one of the following commands and verify that password complexity conforms to organization policy****'
++ grep -i minclass /etc/security/pwquality.conf
+****Run one of the following commands and verify that password complexity conforms to organization policy****
+# minclass = 0
++ echo '****Write to the following command for password length to conform to site policy****'
++ sed -i 's/^#*\s*minlen\s*=.*/minlen = 14/' /etc/security/pwquality.conf
+****Write to the following command for password length to conform to site policy****
++ echo '****Write to the following command for password length to conform to site policy****'
++ sed -i 's/^#*\s*minclass\s*=.*/minclass = 4/' /etc/security/pwquality.conf
+****Write to the following command for password length to conform to site policy****
++ echo '****Ensure password reuse is limited****'
++ echo '****Run the following commands and verify password length requirements conform to organization policy****'
++ grep -i minlen /etc/security/pwquality.conf
+****Ensure password reuse is limited****
+****Run the following commands and verify password length requirements conform to organization policy****
+minlen = 14
++ echo '****Run one of the following commands and verify that password complexity conforms to organization policy****'
++ grep -i minclass /etc/security/pwquality.conf
+****Run one of the following commands and verify that password complexity conforms to organization policy****
+minclass = 4
++ echo '****Write to the following command for password length to conform to site policy****'
++ sed -i 's/^#*\s*minlen\s*=.*/minlen = 14/' /etc/security/pwquality.conf
+****Write to the following command for password length to conform to site policy****
++ echo '****Write to the following command for password length to conform to site policy****'
++ sed -i 's/^#*\s*minclass\s*=.*/minclass = 4/' /etc/security/pwquality.conf
+****Write to the following command for password length to conform to site policy****
++ echo '****Ensure password reuse is limited****'
++ echo '****Run the following commands****'
++ grep -i 'password        [success=1 default=ignore]      pam_unix.so obscure' /etc/pam.d/common-password
+****Ensure password reuse is limited****
+****Run the following commands****
++ grep -i 'use_authtok try_first_pass yescrypt remember=5' /etc/pam.d/common-password
++ echo '****Configure the /etc/pam.d/common-password file to include the remember option and conform to site policy****'
++ cp /home/pootrt/uscript/common-password /etc/pam.d/
+

@@ -1,0 +1,19 @@
+This script has only been tested on Ubuntu 22.04
+The following script automates the process of securing your Ubuntu system based on CIS benchmarks.
+
+1. Create the following dircetory structure.
+
+2. mkdir /home/your_username/uscript/
+
+3. mkdir /home/your_username/uscript/
+
+4. scp all of the contents from the /script/ diretory to /home/your_username/uscript/
+
+5. su or sudo -i
+
+6. chmod u+x /home/your_username/uscript/ubuntu_security-mod.sh
+
+7. bash -x /home/your_username/uscript/ubuntu_security-mod.sh | cat
+
+8.You have now have secured your Ubuntu system. Please execute this script only within a non-production 
+environment and always ask permission before executing this script in any client environment.

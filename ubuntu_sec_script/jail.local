@@ -1,0 +1,7 @@
+[DEFAULT]
+bantime = 31536000
+sender = root@locahost
+destemail = root@locahost
+action = %(action_mwl)s
+[sshd]
+enabled = true
