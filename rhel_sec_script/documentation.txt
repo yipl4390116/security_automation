@@ -1,0 +1,19 @@
+This script has only been tested on RHEL 8.7.
+The following script automates the process of securing your RHEL system based on CIS benchmarks. 
+
+1. Create the following dircetory structure.
+
+2. mkdir /home/your_username/script/
+
+3. mkdir /home/your_username/script/
+
+4. scp all of the contents from the /script/ diretory to /home/your_username/script/
+
+5. su or sudo -i
+
+6. chmod u+x /home/your_username/script/security_redhat-mod.sh
+
+7. sh /home/your_username/script/security_redhat-mod.sh
+
+8. You have now have secured your RHEL system. Please execute this script only within a non-production 
+environment and always ask permission before executing this script in any client environment.

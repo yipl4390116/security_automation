@@ -1,0 +1,19 @@
+
+#
+# /etc/fstab
+# Created by anaconda on Mon Jan  9 01:46:38 2023
+#
+# Accessible filesystems, by reference, are maintained under '/dev/disk/'.
+# See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info.
+#
+# After editing this file, run 'systemctl daemon-reload' to update systemd
+# units generated from this file.
+#
+/dev/mapper/luks-68b2f6f6-0edc-43a4-a1d2-c295be1c47bb /           ext4    defaults,x-systemd.device-timeout=0      	1 1
+UUID=5205d1a8-8422-4593-a92a-e1b4434e0d97 /boot                   ext4    defaults,nosuid,nodev,noexec             	1 2
+UUID=2fb06bda-5152-4064-9094-9f90a5ef6e7f /dev/shm                ext4    defaults,nosuid,nodev,noexec		 	1 2
+UUID=86e918aa-31f9-4231-b698-b28a08a8d22c /home                   ext4    defaults,nosuid,nodev,noexec		 	1 2
+UUID=0abfd5c2-97e8-4da7-a975-02f9e34406ae /tmp                    ext4    defaults,nosuid,nodev,noexec		 	1 2
+UUID=bd2eaf10-3140-4b28-8757-91682d590512 /var                    ext4    defaults,nosuid,nodev,noexec	     	        1 2
+
+
